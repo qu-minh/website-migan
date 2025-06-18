@@ -1,13 +1,6 @@
-import { useNavigate } from "react-router-dom";
-
 import { ImagesAssets } from "../../assets/ImagesAssets";
 
 const AboutSection: React.FC = () => {
-  const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate("/blog");
-  };
-
   return (
     <section id="about" className="bg-white py-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 md:px-0 text-left font-sans">
