@@ -41,19 +41,21 @@ const DetailService: React.FC = () => {
           <h3 className="text-base uppercase tracking-widest text-green-600 font-bold mb-3">
             {service.name}
           </h3>
-          <p className="text-[#808080] leading-relaxed mb-6 whitespace-pre-line text-xl font-normal">
+          <p className="text-gray-700 leading-relaxed mb-6 whitespace-pre-line text-xl font-normal">
             {service.detail}
           </p>
-          <a
-            href="#"
+          <button
+            onClick={() =>
+              window.open("https://www.facebook.com/migan.Tarot/", "_blank")
+            }
             className="text-sm underline text-gray-800 hover:text-green-700 transition"
           >
             Lên lịch hẹn
-          </a>
+          </button>
         </div>
       </motion.main>
 
-      {/* Footer luôn ở dưới */}
+      {/* Footer */}
       <Footer />
     </div>
   );
