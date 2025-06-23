@@ -9,7 +9,10 @@ const Footer: React.FC = () => {
       <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex space-x-6 font-medium">
           <button
-            onClick={() => navigate("/booking")}
+            // onClick={() => navigate("/booking")}
+            onClick={() =>
+              window.open("https://www.facebook.com/migan.Tarot/", "_blank")
+            }
             className="hover:underline"
           >
             Đặt Lịch Hẹn

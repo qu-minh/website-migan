@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import React from "react";
 import { ImagesAssets } from "../../assets/ImagesAssets";
 import AboutSection from "./AboutSections"; // hoặc đường dẫn phù hợp
-import ContactSection from "./ContactSection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import ServiceSections from "./ServiceSections";
@@ -67,7 +66,7 @@ const NewHome: React.FC = () => {
       </motion.section>
 
       {/* Liên hệ  */}
-      <motion.section
+      {/* <motion.section
         id="contact"
         className="px-6 py-40 bg-white text-center scroll-mt-10"
         initial="hidden"
@@ -76,7 +75,7 @@ const NewHome: React.FC = () => {
         variants={fadeInUp}
       >
         <ContactSection />
-      </motion.section>
+      </motion.section> */}
 
       {/* Footer */}
       <Footer />
