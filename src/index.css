@@ -462,7 +462,7 @@ a { color: inherit; }
 .sanctuary-sparkle {
   position: absolute;
   color: var(--color-gold);
-  animation: sanctuary-glimmer 2.35s ease-in-out var(--sparkle-delay, 0s) 2 both;
+  animation: sanctuary-glimmer 2.35s ease-in-out var(--sparkle-delay, 0s) infinite both;
 }
 .sanctuary-sparkle.is-north { top: 3%; left: 46%; }
 .sanctuary-sparkle.is-east { top: 23%; right: 5%; --sparkle-delay: .45s; }
