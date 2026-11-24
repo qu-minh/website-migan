@@ -1,30 +1,9 @@
-import React from "react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const NotFoundPage: React.FC = () => {
+const NotFoundPage = () => {
   const navigate = useNavigate();
-
-  return (
-    <main className="flex h-screen w-screen items-center justify-center bg-yellow-100 px-4">
-      <div className="text-center max-w-md">
-        <p className="text-9xl font-extrabold text-yellow-600">404</p>
-        <h1 className="mt-4 text-4xl font-semibold text-gray-900">
-          Page not found
-        </h1>
-        <p className="mt-2 text-lg text-gray-700">
-          Sorry, we couldn't find the page you’re looking for.
-        </p>
-        <div className="mt-6">
-          <button
-            onClick={() => navigate(-1)}
-            className="inline-block rounded-lg bg-yellow-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          >
-            ⬅ Go back
-          </button>
-        </div>
-      </div>
-    </main>
-  );
+  return <main className="not-found site-journey"><div className="max-w-lg"><Sparkles className="mx-auto mb-5 text-[#b89b66]" size={28} aria-hidden="true" /><p className="eyebrow">Có lẽ lối rẽ này chưa có trong bản đồ</p><p className="font-display text-[clamp(6rem,18vw,10rem)] leading-none theme-accent">404</p><h1 className="serif-title">Trang này đang ẩn mình</h1><p className="prose-copy mb-7">Địa chỉ bạn tìm có thể đã thay đổi. Mình cùng quay lại nơi bắt đầu nhé.</p><button onClick={() => navigate(-1)} className="button-primary"><ArrowLeft size={16} aria-hidden="true" /> Quay lại</button></div></main>;
 };
 
 export default NotFoundPage;

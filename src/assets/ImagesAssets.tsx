@@ -3,9 +3,7 @@ import banner2 from "./banner_migan2.png";
 import banner3 from "./banner_migan3.jpg";
 import imageTarot1 from "./images/image1.jpg";
 
-import tarotCard3 from "./images/Eight-Of-Pentacles-Tarot-Card.png";
-import tarotCard2 from "./images/Ten-Of-Cups-Tarot-Card.png";
-import tarotCard1 from "./images/The-Lovers-Tarot-Card-min.png";
+import { tarotCards } from "../data/tarotCards";
 
 import service1 from "./images/service-1.jpg";
 import service2 from "./images/service-2.jpg";
@@ -19,9 +17,9 @@ export const ImagesAssets = {
 };
 
 export const ImagesTarotCard = {
-  tarotCard1,
-  tarotCard2,
-  tarotCard3,
+  tarotCard1: tarotCards[6].image,
+  tarotCard2: tarotCards[45].image,
+  tarotCard3: tarotCards[71].image,
 };
 
 export const ServiceImage = {

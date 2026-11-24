@@ -1,77 +1,27 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { BookOpen, Clock3 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { tarotCards as cardDeck } from "../../data/tarotCards";
+import Footer from "../new_home/Footer";
+import Navbar from "../new_home/Navbar";
 
 const blogPosts = [
-  {
-    id: 1,
-    title: "5 Lá Bài Tarot Về Nội Tâm",
-    description: "Khám phá những lá bài tiết lộ con người thật của bạn...",
-    image: "/images/blog1.jpg",
-  },
-  {
-    id: 2,
-    title: "Tình Yêu Đến Rồi Đi – Có Phải Do Số Phận?",
-    description: "Phân tích các lá bài Tarot trong chuyện tình cảm...",
-    image: "/images/blog2.jpg",
-  },
-  {
-    id: 3,
-    title: "3 Điều Bạn Chưa Bao Giờ Được Nói Về Bản Thân Mình",
-    description: "Dẫn dụ từ Tarot để hiểu rõ bản thân hơn...",
-    image: "/images/blog3.jpg",
-  },
+  { id: 1, title: "5 Lá Bài Tarot Về Nội Tâm", description: "Khám phá những lá bài tiết lộ con người thật của bạn...", image: "/images/blog1.jpg", cover: cardDeck[6].image, tag: "Thấu hiểu bản thân", readTime: "5 phút đọc" },
+  { id: 2, title: "Tình Yêu Đến Rồi Đi – Có Phải Do Số Phận?", description: "Phân tích các lá bài Tarot trong chuyện tình cảm...", image: "/images/blog2.jpg", cover: cardDeck[45].image, tag: "Kết nối", readTime: "4 phút đọc" },
+  { id: 3, title: "3 Điều Bạn Chưa Bao Giờ Được Nói Về Bản Thân Mình", description: "Dẫn dụ từ Tarot để hiểu rõ bản thân hơn...", image: "/images/blog3.jpg", cover: cardDeck[71].image, tag: "Chiêm nghiệm", readTime: "3 phút đọc" },
 ];
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const Blog: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-[#fdfdfd] text-gray-800 font-sans">
-      <div className="max-w-5xl mx-auto px-4 py-20">
-        <motion.h1
-          className="text-4xl md:text-5xl font-semibold text-center mb-12"
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-        >
-          Blog – Khám Phá Bí Mật Cuộc Sống
-        </motion.h1>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <motion.div
-              key={post.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-            >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-5">
-                <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-                <p className="text-sm text-gray-600 mb-4">{post.description}</p>
-                <Link
-                  to={`/blog/${post.id}`}
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                >
-                  Đọc thêm →
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+const Blog = () => (
+  <div className="site-journey min-h-screen"><Navbar />
+    <main className="inner-page">
+      <div className="section-wrap">
+        <div className="inner-hero"><span className="eyebrow">Góc chiêm nghiệm</span><h1 className="serif-title">Một chút dịu dàng để mang theo</h1><p className="prose-copy">Những ghi chú nhỏ về Tarot, cảm xúc và hành trình trở về với chính mình.</p></div>
+        <div className="blog-grid">
+          {blogPosts.map((post) => <article key={post.id} className="surface-card blog-card"><img src={post.cover} alt="" loading="lazy" /><div className="blog-card-body"><span className="eyebrow">{post.tag}</span><h2>{post.title}</h2><p>{post.description}</p><span className="mt-5 inline-flex items-center gap-2 text-xs theme-accent"><BookOpen size={15} aria-hidden="true" /> <Clock3 size={14} aria-hidden="true" /> {post.readTime}</span></div></article>)}
         </div>
+        <div className="mt-14 surface-card px-6 py-9 text-center"><p className="font-display text-2xl">“Mình có thể bắt đầu lại, theo nhịp độ của riêng mình.”</p><Link to="/#tarot-table" className="button-outline mt-4">Rút một lá để tự chiêm nghiệm</Link></div>
       </div>
-    </div>
-  );
-};
+    </main><Footer />
+  </div>
+);
 
 export default Blog;

@@ -1,149 +1,35 @@
-import { motion } from "framer-motion";
-import { Mail, MapPin } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Copy, MessageCircle, MoonStar } from "lucide-react";
+import { MIGAN_FACEBOOK_URL } from "../../data/miganContact";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
+export default function ContactSection({ cardName }: { cardName: string }) {
+  const [copyStatus, setCopyStatus] = useState("");
+  const message = cardName ? `Chào Migan, mình muốn đặt lịch trải bài 1-1 để tìm hiểu sâu hơn về lá ${cardName} mình vừa rút.` : "";
 
-export default function ContactSection() {
   return (
-    <section id="contact" className="bg-white py-16 px-4 md:px-20">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_1fr] gap-10 font-sans text-left items-center">
-        {/* FORM */}
-        <motion.div
-          className="w-full max-w-xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          custom={0}
-        >
-          <p className="text-green-600 font-semibold uppercase">
-            Kết nối với Migan
-          </p>
-          <h2 className="text-3xl font-bold mt-2 mb-6">
-            Hãy đặt lịch xem tarot ngay!
-          </h2>
-
-          <form className="space-y-5">
-            <div>
-              <label className="block font-semibold mb-1">
-                Tên của bạn <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Jane Smith"
-                className="w-full border border-gray-400 p-3 rounded"
-                required
-              />
+    <section id="contact" className="section-space section-wrap" aria-labelledby="booking-title">
+      <div className="booking-panel">
+        <MoonStar className="booking-decoration" strokeWidth={.6} aria-hidden="true" />
+        <div className="booking-copy">
+          <span className="eyebrow">Trải bài riêng 1-1</span>
+          <h2 id="booking-title" className="serif-title">{cardName ? `Khám phá sâu hơn lá ${cardName}` : "Khi bạn sẵn sàng, Migan ở đây."}</h2>
+          <p className="prose-copy">Nhắn Migan trên Facebook để chia sẻ chủ đề bạn muốn xem và chọn thời gian phù hợp.</p>
+          {message && (
+            <div className="booking-message">
+              <p>{message}</p>
+              <button className="button-outline" type="button" onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(message);
+                  setCopyStatus("Đã sao chép. Bạn có thể dán vào cuộc trò chuyện.");
+                } catch {
+                  setCopyStatus("Bạn có thể bôi đen lời nhắn ở trên để sao chép.");
+                }
+              }}><Copy size={15} aria-hidden="true" /> Sao chép lời nhắn</button>
+              <p role="status">{copyStatus}</p>
             </div>
-
-            <div>
-              <label className="block font-semibold mb-1">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email@website.com"
-                className="w-full border border-gray-400 p-3 rounded"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold mb-1">
-                Số điện thoại <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="tel"
-                placeholder="0979xxx..."
-                className="w-full border border-gray-400 p-3 rounded"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold mb-1">Tin nhắn</label>
-              <textarea
-                className="w-full border border-gray-400 p-3 rounded h-28"
-                placeholder="Bạn cần xem về điều gì?"
-              />
-            </div>
-
-            <div className="flex items-start gap-2">
-              <input type="checkbox" required />
-              <p className="text-sm">
-                Tôi đồng ý để website lưu thông tin này để liên hệ lại.{" "}
-                <span className="text-red-500">*</span>
-              </p>
-            </div>
-
-            <button
-              type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded w-full transition"
-            >
-              GỬI THÔNG TIN
-            </button>
-          </form>
-        </motion.div>
-
-        {/* CONTACT INFO */}
-        <motion.div
-          className="bg-gray-100 p-6 rounded shadow-md w-full max-w-md mx-auto h-fit"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          custom={1}
-        >
-          <h3 className="font-bold text-lg">Kết nối với Migan</h3>
-          <p className="flex items-center gap-2 text-gray-700 mt-2">
-            <Mail className="w-4 h-4" />
-            <a href="mailto:migan@gmail.com" className="underline">
-              migan@gmail.com
-            </a>
-          </p>
-
-          <h3 className="font-bold text-lg mt-6">Địa chỉ</h3>
-          <p className="flex items-center gap-2 text-gray-700 mt-2">
-            <MapPin className="w-4 h-4" />
-            <a
-              href="https://www.google.com/maps/place/Can+Tho"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
-            >
-              Can Tho, CT VN
-            </a>
-          </p>
-
-          <h3 className="font-bold text-lg mt-6">Giờ hoạt động</h3>
-          <div className="mt-2 text-gray-700 space-y-1 text-sm">
-            {[
-              ["Thứ Hai", "9:00 – 22:00"],
-              ["Thứ Ba", "9:00 – 22:00"],
-              ["Thứ Tư", "9:00 – 22:00"],
-              ["Thứ Năm", "9:00 – 22:00"],
-              ["Thứ Sáu", "9:00 – 22:00"],
-              ["Thứ Bảy", "9:00 – 18:00"],
-              ["Chủ nhật", "9:00 – 24:00"],
-            ].map(([day, time]) => (
-              <div key={day} className="flex justify-between w-full">
-                <span>{day}</span>
-                <span>{time}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+          )}
+          <a className="button-primary" href={MIGAN_FACEBOOK_URL} target="_blank" rel="noreferrer"><MessageCircle size={17} aria-hidden="true" /> Nhắn Migan qua Facebook <ArrowUpRight size={16} aria-hidden="true" /></a>
+        </div>
       </div>
     </section>
   );

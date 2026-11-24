@@ -1,73 +1,33 @@
-import React from "react";
-import { FaPhone } from "react-icons/fa";
+import { MIGAN_FACEBOOK_URL } from "../../data/miganContact";
+import { HeartHandshake, LockKeyhole, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import Footer from "../new_home/Footer";
+import Navbar from "../new_home/Navbar";
+import { ImagesAssets } from "../../assets/ImagesAssets";
 
-const About: React.FC = () => {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24 sm:py-32 lg:px-8 bg-gray-100">
-      <div className="text-center max-w-5xl mx-auto">
-        {/* PHẦN DỊCH VỤ */}
-        <div>
-          <h2 className="text-5xl font-medium text-gray-800 mb-20">
-            Dịch vụ của chúng tôi
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[
-              {
-                icon: "🔮",
-                title: "Tư vấn tình yêu",
-                desc: "Giải mã các mối quan hệ, giúp bạn tìm được hạnh phúc trong tình yêu.",
-              },
-              {
-                icon: "💼",
-                title: "Tư vấn công việc",
-                desc: "Nhận định và tư vấn về sự nghiệp, giúp bạn phát triển và thăng tiến.",
-              },
-              {
-                icon: "🌿",
-                title: "Tư vấn cuộc sống",
-                desc: "Khám phá các lựa chọn trong cuộc sống, giúp bạn đưa ra quyết định đúng đắn.",
-              },
-            ].map((service, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105"
-              >
-                <div className="mb-4 w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl shadow">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-center text-gray-500">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+const principles = [
+  { icon: HeartHandshake, title: "Lắng nghe không phán xét", copy: "Mỗi câu chuyện được đón nhận với sự chân thành và tôn trọng." },
+  { icon: LockKeyhole, title: "Không gian riêng tư", copy: "Bạn được chủ động chia sẻ điều mình cảm thấy thoải mái." },
+  { icon: Sparkles, title: "Trao quyền lựa chọn", copy: "Trải bài gợi mở góc nhìn; quyết định luôn thuộc về bạn." },
+];
 
-        {/* PHẦN CAM KẾT */}
-        <div className="mt-20">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">
-            Chúng tôi cam kết
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-gray-700 max-w-3xl mx-auto">
-            Tarot Migan cam kết mang đến những trải nghiệm tư vấn chân thành,
-            chính xác và đầy tâm huyết. Chúng tôi sẽ giúp bạn giải mã những câu
-            hỏi lớn trong cuộc đời, giúp bạn tìm được con đường đúng đắn.
-          </p>
+const About = () => (
+  <div className="site-journey min-h-screen"><Navbar />
+    <main className="inner-page">
+      <div className="section-wrap">
+        <div className="inner-hero"><span className="eyebrow">Câu chuyện của Migan</span><h1 className="serif-title">Một nơi để trở về với mình</h1><p className="prose-copy">Tarot là điểm bắt đầu cho một cuộc trò chuyện sâu hơn — với những cảm xúc, mong muốn và lựa chọn đang chờ được lắng nghe.</p></div>
+        <div className="detail-grid">
+          <img className="detail-image" src={ImagesAssets.imageTarot1} alt="Không gian trải bài Migan Tarot" />
+          <div className="detail-copy"><span className="eyebrow">Tarot như tấm gương soi chiếu</span><h2 className="serif-title">Không cần biết trước tương lai để hiểu mình hơn</h2><p className="prose-copy">Thông qua những lá bài Tarot, Migan cùng bạn nhìn lại điều đang diễn ra bên trong: cảm xúc, niềm tin, những điều bạn trân trọng và các khả năng phía trước.</p><p className="prose-copy">Không có câu trả lời nào thay bạn quyết định. Migan ở đây để lắng nghe và đồng hành bằng một góc nhìn nhẹ nhàng, để bạn tự tìm thấy điều phù hợp với mình.</p><a className="button-primary mt-4" href={MIGAN_FACEBOOK_URL} target="_blank" rel="noreferrer">Trò chuyện cùng Migan</a></div>
         </div>
-
-        {/* NÚT LIÊN HỆ */}
-        <div className="mt-16">
-          <button
-            onClick={() => alert("0123456789")}
-            className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-lg font-medium text-white transition-all hover:bg-indigo-500 hover:scale-105 focus:outline-none shadow-lg hover:shadow-2xl"
-          >
-            <FaPhone /> Liên hệ với chúng tôi
-          </button>
+        <div className="section-space">
+          <div className="section-heading"><span className="eyebrow">Giá trị Migan gìn giữ</span><h2 className="serif-title">Dịu dàng, riêng tư, tôn trọng</h2></div>
+          <div className="service-grid">{principles.map(({ icon: Icon, title, copy }) => <article key={title} className="surface-card p-7"><span className="mb-5 grid h-12 w-12 place-items-center rounded-full theme-icon"><Icon size={21} aria-hidden="true" /></span><h3 className="font-display text-2xl font-semibold">{title}</h3><p className="prose-copy mb-0 text-sm">{copy}</p></article>)}</div>
         </div>
+        <div className="text-center"><Link to="/#tarot-table" className="button-outline">Rút một lá để tự chiêm nghiệm</Link></div>
       </div>
-    </main>
-  );
-};
+    </main><Footer />
+  </div>
+);
 
 export default About;

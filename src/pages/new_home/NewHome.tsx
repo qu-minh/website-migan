@@ -1,83 +1,85 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { ImagesAssets } from "../../assets/ImagesAssets";
-import AboutSection from "./AboutSections"; // hoặc đường dẫn phù hợp
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Sparkle } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ContactSection from "./ContactSection";
+import AboutSection from "./AboutSections";
+import DailyTarotSection from "./DailyTarotSection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import ServiceSections from "./ServiceSections";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-};
+const ease = [.2, .75, .25, 1] as const;
+const heroCards = [
+  { image: "/assets/cards/18-the-moon.jpg", position: "moon" },
+  { image: "/assets/cards/19-the-sun.jpg", position: "sun" },
+  { image: "/assets/cards/17-the-star.jpg", position: "star" },
+];
 
-const NewHome: React.FC = () => {
+const NewHome = () => {
+  const { hash, key } = useLocation();
+  const [cardName, setCardName] = useState("");
+  const reduceMotion = useReducedMotion();
+  const revealInView = {
+    initial: reduceMotion ? false : { opacity: 0, y: 28 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: .12 },
+    transition: { duration: .65, ease },
+  };
+
+  useEffect(() => {
+    if (!hash) return;
+    const destination = document.getElementById(hash.slice(1));
+    destination?.scrollIntoView();
+    if (hash === "#tarot-table") destination?.focus({ preventScroll: true });
+  }, [hash, key]);
+
   return (
-    <div className="min-h-screen bg-white  text-gray-900">
-      {/* Thanh Navbar */}
+    <div className="site-journey min-h-screen">
       <Navbar />
+      <main>
+        <section className="hero sanctuary-hero" aria-labelledby="hero-title">
+          <div className="section-wrap sanctuary-grid">
+            <div className="sanctuary-copy">
+              <span className="eyebrow sanctuary-enter"><Sparkle size={16} aria-hidden="true" /> Migan Tarot</span>
+              <h1 id="hero-title" className="serif-title sanctuary-enter">Dành một chút<br /><em>lắng nghe</em><br />chính mình.</h1>
+              <p className="prose-copy sanctuary-enter">Rút một lá trong bộ Tarot 78 lá và dành vài phút nhìn lại điều bạn đang cảm thấy hôm nay.</p>
+              <div className="hero-actions sanctuary-enter">
+                <Link className="button-primary" to="/#tarot-table">Rút lá bài hôm nay <ArrowDown size={16} aria-hidden="true" /></Link>
+                <a className="button-outline" href="#service">Xem trải bài 1-1 <ArrowUpRight size={16} aria-hidden="true" /></a>
+              </div>
+            </div>
 
-      <motion.header
-        className="absolute top-0 left-0 w-full z-30 py-5"
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-      ></motion.header>
+            <div className="sanctuary-art" aria-hidden="true">
+              <div className="sanctuary-orbit" />
+              <Sparkle className="sanctuary-sparkle is-north" size={24} strokeWidth={1} />
+              <Sparkle className="sanctuary-sparkle is-east" size={18} strokeWidth={1} />
+              <Sparkle className="sanctuary-sparkle is-south" size={14} strokeWidth={1} />
+              {heroCards.map(({ image, position }) => (
+                <div key={image} className={`sanctuary-card is-${position}`}>
+                  <img src={image} alt="" fetchPriority={position === "star" ? "high" : "auto"} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      {/* Hình nền */}
-      <section className="relative w-full h-screen flex items-center justify-center text-center px-4 py-4">
-        <img
-          src={ImagesAssets.banner3}
-          alt="Hero"
-          className="absolute  bg-white inset-0 w-full h-full object-cover brightness-50"
-        />
-        <motion.h1
-          className="relative z-10 text-5xl md:text-7xl font-light tracking-widest font-serif text-white uppercase"
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-        >
-          Migan Tarot
-        </motion.h1>
-      </section>
+        <DailyTarotSection onBook={(card) => setCardName(card.name)} />
 
-      {/* Giới thiệu */}
-      <motion.section
-        id="about"
-        className=" bg-white text-center scroll-mt-16"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeInUp}
-      >
-        <AboutSection />
-      </motion.section>
+        <motion.section id="service" className="journey-divider" {...revealInView}>
+          <ServiceSections />
+        </motion.section>
 
-      {/* Dịch vụ */}
-      <motion.section
-        id="service"
-        className="px-6 py-40 bg-[#EEF1EF] text-center font-mono scroll-mt-14"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeInUp}
-      >
-        <ServiceSections />
-      </motion.section>
+        <motion.section id="about" className="journey-divider" {...revealInView}>
+          <AboutSection />
+        </motion.section>
 
-      {/* Liên hệ  */}
-      {/* <motion.section
-        id="contact"
-        className="px-6 py-40 bg-white text-center scroll-mt-10"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeInUp}
-      >
-        <ContactSection />
-      </motion.section> */}
-
-      {/* Footer */}
+        <ContactSection key={cardName} cardName={cardName} />
+        <div className="section-wrap journey-help">
+          <Link to="/blog/">Góc chiêm nghiệm <ArrowUpRight size={15} aria-hidden="true" /></Link>
+          <Link to="/faq_section/">Câu hỏi thường gặp <ArrowUpRight size={15} aria-hidden="true" /></Link>
+        </div>
+      </main>
       <Footer />
     </div>
   );
