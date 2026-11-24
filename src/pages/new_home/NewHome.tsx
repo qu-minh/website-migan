@@ -52,9 +52,12 @@ const NewHome = () => {
 
             <div className="sanctuary-art" aria-hidden="true">
               <div className="sanctuary-orbit" />
+              <div className="sanctuary-orbit-lights" />
               <Sparkle className="sanctuary-sparkle is-north" size={24} strokeWidth={1} />
               <Sparkle className="sanctuary-sparkle is-east" size={18} strokeWidth={1} />
               <Sparkle className="sanctuary-sparkle is-south" size={14} strokeWidth={1} />
+              <Sparkle className="sanctuary-sparkle is-west" size={18} strokeWidth={1.25} />
+              <Sparkle className="sanctuary-sparkle is-low-east" size={13} strokeWidth={1.25} />
               {heroCards.map(({ image, position }) => (
                 <div key={image} className={`sanctuary-card is-${position}`}>
                   <img src={image} alt="" fetchPriority={position === "star" ? "high" : "auto"} />

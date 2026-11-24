@@ -366,7 +366,15 @@ a { color: inherit; }
   font-size: clamp(3.1rem, 6.45vw, 6.7rem);
   line-height: 1.02;
 }
-.sanctuary-copy h1 em { color: var(--color-gold); font-weight: 400; }
+.sanctuary-copy h1 em {
+  color: var(--color-gold);
+  font-weight: 400;
+  animation: sanctuary-emphasis 1s var(--ease-soft) .3s both;
+}
+@keyframes sanctuary-emphasis {
+  from { color: var(--color-ink); }
+  to { color: var(--color-gold); }
+}
 .sanctuary-copy p { max-width: 34ch; font-size: clamp(.94rem, 1.2vw, 1.08rem); }
 .sanctuary-enter { animation: sanctuary-enter .85s var(--ease-soft) both; }
 .sanctuary-copy h1 { animation-delay: .10s; }
@@ -394,11 +402,41 @@ a { color: inherit; }
 .sanctuary-orbit {
   inset: 8%;
   border: 1px dashed #80521f78;
-  animation: orbit-turn 4.8s var(--ease-soft) both;
+  animation: orbit-turn 36s linear infinite;
 }
 .sanctuary-orbit::before { inset: 5%; }
 .sanctuary-orbit::after { inset: 13%; }
-@keyframes orbit-turn { from { transform: rotate(-36deg); } }
+@keyframes orbit-turn { to { transform: rotate(1turn); } }
+.sanctuary-orbit-lights {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  transform: rotate(-24deg);
+  animation: orbit-lights 18s linear infinite;
+}
+.sanctuary-orbit-lights::before,
+.sanctuary-orbit-lights::after {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #b27a37;
+  border-radius: 50%;
+  background: #ffe1a1;
+  box-shadow: 0 0 12px #dba54c;
+  content: "";
+}
+.sanctuary-orbit-lights::before { top: 0; transform: translate(-50%, -50%); }
+.sanctuary-orbit-lights::after { bottom: 0; transform: translate(-50%, 50%) scale(.74); }
+@keyframes orbit-lights { to { transform: rotate(336deg); } }
+.sanctuary-card img {
+  animation: sanctuary-float 4.4s ease-in-out calc(1.1s + var(--card-delay)) both;
+}
+@keyframes sanctuary-float {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(-8px); }
+  68% { transform: translateY(3px); }
+}
 .sanctuary-card {
   position: absolute;
   width: 34%;
@@ -424,14 +462,16 @@ a { color: inherit; }
 .sanctuary-sparkle {
   position: absolute;
   color: var(--color-gold);
-  animation: sanctuary-glimmer 2.3s ease-in-out 2 alternate;
+  animation: sanctuary-glimmer 2.35s ease-in-out var(--sparkle-delay, 0s) 2 both;
 }
 .sanctuary-sparkle.is-north { top: 3%; left: 46%; }
-.sanctuary-sparkle.is-east { top: 23%; right: 5%; animation-delay: -.9s; }
-.sanctuary-sparkle.is-south { bottom: 6%; left: 25%; animation-delay: -2s; }
+.sanctuary-sparkle.is-east { top: 23%; right: 5%; --sparkle-delay: .45s; }
+.sanctuary-sparkle.is-south { bottom: 6%; left: 25%; --sparkle-delay: .85s; }
+.sanctuary-sparkle.is-west { top: 57%; left: 2%; --sparkle-delay: .65s; }
+.sanctuary-sparkle.is-low-east { bottom: 13%; right: 13%; --sparkle-delay: 1.1s; }
 @keyframes sanctuary-glimmer {
-  from { opacity: .4; transform: scale(.85); }
-  to { opacity: 1; transform: scale(1.1); }
+  0%, 100% { opacity: .48; transform: scale(.9); }
+  50% { opacity: 1; transform: scale(1.22) translateY(-4px); }
 }
 
 .daily-heading h2, .section-heading h2, .booking-panel h2, .inner-hero h1 {
@@ -520,7 +560,7 @@ a { color: inherit; }
   .booking-decoration { opacity: .14; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sanctuary-orbit, .sanctuary-sparkle, .sanctuary-enter, .sanctuary-card, .inner-hero { animation: none; }
+  .sanctuary-orbit, .sanctuary-orbit-lights, .sanctuary-sparkle, .sanctuary-enter, .sanctuary-card, .sanctuary-card img, .sanctuary-copy h1 em, .inner-hero { animation: none; }
 }
 
 .service-artwork {
