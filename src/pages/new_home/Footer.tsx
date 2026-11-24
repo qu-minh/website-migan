@@ -14,13 +14,13 @@ const Footer = () => {
     <footer className="site-footer">
       <div className="section-wrap footer-main">
         <div className="footer-brand">
-          <button className="brand !text-white" onClick={() => navigate("/")} aria-label="Migan Tarot — về trang chủ">
+          <button className="brand" onClick={() => navigate("/")} aria-label="Migan Tarot — về trang chủ">
             <span className="brand-mark" aria-hidden="true"><Sparkles size={20} /></span>
             <span className="brand-name">Migan<small>Tarot & reflection</small></span>
           </button>
           <p>Một khoảng lặng để lắng nghe, chiêm nghiệm và hiểu mình hơn — với sự dịu dàng và tôn trọng.</p>
           <div className="mt-5 flex gap-3">
-            {socials.map(({ label, href, icon: Icon }) => <a key={href} href={href} target="_blank" rel="noreferrer" aria-label={label} className="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white/80 transition hover:border-[#d4bc8d] hover:text-[#d4bc8d]"><Icon size={17} aria-hidden="true" /></a>)}
+            {socials.map(({ label, href, icon: Icon }) => <a key={href} href={href} target="_blank" rel="noreferrer" aria-label={label} className="grid h-10 w-10 place-items-center rounded-full border border-[var(--color-line)] theme-muted transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"><Icon size={17} aria-hidden="true" /></a>)}
           </div>
         </div>
         <div>
@@ -36,7 +36,7 @@ const Footer = () => {
           <div className="footer-links">
             <a href="/#contact">Đặt lịch trải bài <ArrowUpRight size={14} className="inline" aria-hidden="true" /></a>
 
-            <span className="text-sm text-white/65">Cần Thơ, Việt Nam</span>
+            <span className="text-sm theme-muted">Cần Thơ, Việt Nam</span>
           </div>
         </div>
       </div>

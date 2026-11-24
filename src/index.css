@@ -63,7 +63,7 @@ a { color: inherit; }
 .mobile-menu-button { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; border: 1px solid var(--color-line); border-radius: 50%; background: transparent; color: var(--color-ink); }
 
 .intro-grid { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 88px); }
-.intro-image { position: relative; display: block; width: 100%; aspect-ratio: 5 / 4; border: 1px solid #e4c18d60; border-radius: 20px; object-fit: cover; object-position: center; box-shadow: 0 16px 40px #08060e75; }
+.intro-image { position: relative; display: block; width: 100%; aspect-ratio: 5 / 4; border: 1px solid #80521f60; border-radius: 20px; object-fit: cover; object-position: center; box-shadow: 0 16px 40px #53392d26; }
 .section-heading h2 { margin: 12px 0 16px; font-size: clamp(2rem, 3.6vw, 2.55rem); }
 
 .section-heading { max-width: 700px; margin: 0 auto 38px; text-align: center; }
@@ -305,37 +305,40 @@ a { color: inherit; }
 
 /* Migan Tarot */
 :root {
-  color-scheme: dark;
-  --color-cream: #100f19;
-  --color-surface: #1a1725;
-  --color-ink: #f8efe3;
-  --color-plum: #ede0cf;
-  --color-lavender: #e4c18d;
-  --color-gold: #e4c18d;
-  --color-muted: #bcb3c7;
-  --color-line: #baa2c136;
-  --page-glow: #332342;
-  --gold-button: #eac58d;
+  color-scheme: light;
+  --color-cream: #fbf7ef;
+  --color-surface: #fffdf8;
+  --color-ink: #332922;
+  --color-plum: #563d37;
+  --color-lavender: #80521f;
+  --color-gold: #80521f;
+  --color-muted: #685852;
+  --color-line: #ddcdb8;
+  --page-glow: #efe2d2;
+  --gold-button: #e8bc78;
   color: var(--color-ink);
   background: var(--color-cream);
 }
 .site-journey {
   color: var(--color-ink);
-  background: radial-gradient(ellipse 740px 670px at 83% 12%, #3b284e80, transparent), var(--color-cream);
+  background: radial-gradient(ellipse 740px 670px at 83% 12%, #ecdfed80, transparent), var(--color-cream);
 }
 .theme-muted { color: var(--color-muted); }
 .theme-accent { color: var(--color-gold); }
-.theme-icon { color: var(--color-gold); background: #e4c18d15; }
+.theme-icon { color: var(--color-gold); background: #80521f15; }
 .button-primary { color: #261a20; background: var(--gold-button); border-color: var(--gold-button); }
 .button-primary:hover { color: #261a20; background: #f4d7aa; }
-.button-outline:hover { background: #f6dca512; }
+.button-outline:hover { background: #f2e5d4; }
 .button-primary, .button-outline { padding-block: .55rem; text-align: center; }
 .button-primary svg, .button-outline svg { flex: none; }
-.site-header { background: #100f19ee; border-color: var(--color-line); }
+.site-header { background: #fbf7efee; border-color: var(--color-line); }
 .nav-inner { max-width: 1160px; }
 .nav-link { color: var(--color-muted); }
 .nav-link:hover { color: var(--color-gold); }
-.site-footer { background: #0d0b14; border-top: 1px solid var(--color-line); }
+.site-footer { background: #f0e5d6; color: var(--color-ink); border-top: 1px solid var(--color-line); }
+.footer-brand p, .footer-links a, .footer-links button, .footer-bottom { color: var(--color-muted); }
+.footer-links a:hover, .footer-links button:hover, .footer-title { color: var(--color-gold); }
+.footer-bottom { border-color: var(--color-line); }
 .journey-divider { border-top: 1px solid var(--color-line); }
 .journey-help {
   display: flex;
@@ -349,7 +352,7 @@ a { color: inherit; }
 
 .sanctuary-hero {
   padding-block: clamp(112px, 13vw, 174px) clamp(50px, 7vw, 100px);
-  background: radial-gradient(ellipse at 73% 49%, #51345f63, transparent 54%), linear-gradient(180deg, #181020, var(--color-cream));
+  background: radial-gradient(ellipse at 73% 49%, #e8d9edaa, transparent 54%), linear-gradient(180deg, #fffaf1, var(--color-cream));
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -383,17 +386,17 @@ a { color: inherit; }
   aspect-ratio: 1;
   margin-inline: auto;
   isolation: isolate;
-  background: radial-gradient(ellipse, #a66f9150, #714f861c 52%, transparent 70%);
+  background: radial-gradient(ellipse, #eac48562, #e4d4ed75 52%, transparent 70%);
 }
 .sanctuary-orbit, .sanctuary-orbit::before, .sanctuary-orbit::after {
   position: absolute;
-  border: 1px solid #e4c18d4d;
+  border: 1px solid #80521f4d;
   border-radius: 50%;
   content: '';
 }
 .sanctuary-orbit {
   inset: 8%;
-  border: 1px dashed #e4c18d78;
+  border: 1px dashed #80521f78;
   animation: orbit-turn 4.8s var(--ease-soft) both;
 }
 .sanctuary-orbit::before { inset: 5%; }
@@ -413,7 +416,7 @@ a { color: inherit; }
   object-fit: cover;
   border: 1px solid var(--color-gold);
   border-radius: 7px;
-  box-shadow: 0 22px 45px #090610ab;
+  box-shadow: 0 22px 45px #58403838;
 }
 .sanctuary-card.is-moon { --card-x: -65%; --card-y: 11%; --card-angle: -18deg; --card-delay: .24s; }
 .sanctuary-card.is-sun { --card-x: 66%; --card-y: 9%; --card-angle: 17deg; --card-delay: .31s; }
@@ -440,21 +443,21 @@ a { color: inherit; }
   text-wrap: balance;
 }
 .daily-table, .booking-panel {
-  background: radial-gradient(ellipse at 50% 44%, #352340, #191524 78%);
-  box-shadow: 0 20px 60px #09061170;
+  background: radial-gradient(ellipse at 50% 44%, #f2e4ed, #fffaf1 78%);
+  box-shadow: 0 20px 60px #54352b16;
 }
-.daily-table { border-color: #e4c18d57; }
+.daily-table { border-color: #80521f57; }
 .daily-idle, .daily-shuffling { min-height: clamp(282px, 32vw, 395px); }
-.daily-idle-stack img { box-shadow: 0 16px 42px #0009; }
-.daily-reading-image-wrap { background: #22192f; }
-.daily-interpretation { border-color: var(--color-line); background: #100c1b66; }
-.daily-interpretation.is-healing { border-color: #e4c18d70; background: #e4c18d0d; }
+.daily-idle-stack img { box-shadow: 0 16px 42px #53392d44; }
+.daily-reading-image-wrap { background: #f3e8dc; }
+.daily-interpretation { border-color: var(--color-line); background: #fffdf7e6; }
+.daily-interpretation.is-healing { border-color: #80521f70; background: #80521f0d; }
 .daily-redraw { color: var(--color-gold); }
 .service-card { border-color: var(--color-line); }
-.service-card:hover { box-shadow: 0 18px 44px #07061188; }
+.service-card:hover { box-shadow: 0 18px 44px #53392d2b; }
 .service-content p, .blog-card p { color: var(--color-muted); }
 .service-image-wrap, .blog-card img { background: var(--page-glow); }
-#about { background: radial-gradient(ellipse at 25% 52%, #34234266, transparent 52%); }
+#about { background: radial-gradient(ellipse at 25% 52%, #ecdfed80, transparent 52%); }
 .intro-copy h2 {
   max-width: 16ch;
   margin: 12px 0 20px;
@@ -476,12 +479,12 @@ a { color: inherit; }
 }
 .intro-text-link:hover { text-decoration: underline; }
 .inner-hero { animation: sanctuary-enter .65s var(--ease-soft) both; }
-.faq-item[open] { border-color: #e4c18d6a; }
+.faq-item[open] { border-color: #80521f6a; }
 .booking-panel {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: radial-gradient(ellipse at 82% 24%, #523155, transparent 65%), #1c1528;
+  background: radial-gradient(ellipse at 82% 24%, #f0dfeb, transparent 65%), #f6e9d8;
   padding: clamp(25px, 6.5vw, 78px);
 }
 .booking-copy { position: relative; max-width: 660px; }
@@ -489,7 +492,7 @@ a { color: inherit; }
 .booking-decoration {
   position: absolute;
   z-index: -1;
-  color: #e4c18d;
+  color: #80521f;
   width: min(48%, 330px);
   height: auto;
   right: 2%;
@@ -504,14 +507,14 @@ a { color: inherit; }
   padding: 14px;
   border: 1px solid var(--color-line);
   border-radius: 12px;
-  background: #100f19a6;
+  background: #fbf7efa6;
   color: var(--color-muted);
 }
 .booking-message button { margin-top: 10px; }
 .booking-message [role="status"]:not(:empty) { margin-top: 8px; font-size: .8rem; }
 
 @media (max-width: 800px) {
-  .site-header .nav-links { background: #191524; border-color: var(--color-line); }
+  .site-header .nav-links { background: #fffaf1; border-color: var(--color-line); }
   .sanctuary-grid { grid-template-columns: 1fr; gap: 18px; text-align: center; }
   .sanctuary-copy p { margin-inline: auto; }
   .sanctuary-copy .hero-actions { justify-content: center; }
